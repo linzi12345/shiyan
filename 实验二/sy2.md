@@ -65,6 +65,30 @@ app:layout_constraintTop_toTopOf="parent" />
 从Palette面板中拖动Button  
 ![](/实验二/pic/屏幕截图%202023-04-26%20154359.png)  
 调整Button的约束，设置Button的Top>BottonOf textView  
+```java
+app:layout_constraintTop_toBottomOf="@+id/textview" 
+```
+#### 调整按钮
+查看按钮的布局设计视图，它与TextView之间的连接不是锯齿状的而是波浪状的，表明两者之间存在链（chain），是一种两个组件之间的双向联系而不是单向联系。删除两者之间的链，可以在设计视图右键相应约束，选择Delete  
+![](/实验二/pic/屏幕截图%202023-04-27%20002357.png) 
+同时，删除按钮的左侧约束。
+#### 添加新的约束
+添加按钮的右边和底部约束至父类屏幕，Top约束至TextView的底部，效果如下
+![](/实验二/pic/屏幕截图%202023-04-27%20003428.png) 
+#### 更改组件的文本
+在布局文件代码中，找到按钮的text属性部分，点击文本，左侧出现灯泡状的提示，选择 Extract string resource。
+![](/实验二/pic/屏幕截图%202023-04-27%20003725.png)
+弹出对话框，令资源名为toast_button_text，资源值为Toast，并点击OK。  
+![](/实验二/pic/屏幕截图%202023-04-27%20003910.png)
+#### 添加新的按钮
+向fragment_first.xml文件中添加第三个按钮，位于Toast和Random按钮之间，TextView的下方。新Button的左右约束分别约束至Toast和Random，Top约束至TextView的底部，Buttom约束至屏幕的底部，效果如下：  
+![](/实验二/pic/屏幕截图%202023-04-27%20005854.png)
+#### 运行应用程序查看效果
+效果如下： 
+![](/实验二/pic/屏幕截图%202023-04-27%20011106.png)
+
+
+
 
 
 
