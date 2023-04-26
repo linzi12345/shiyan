@@ -86,6 +86,26 @@ app:layout_constraintTop_toBottomOf="@+id/textview"
 #### 运行应用程序查看效果
 效果如下： 
 ![](/实验二/pic/屏幕截图%202023-04-27%20011106.png)
+### 5、更新按钮和文本框的外观
+#### 添加新的颜色资源
+values>colors.xml定义了一些应用程序可以使用的颜色，添加新颜色screenBackground 值为 #2196F3，这是蓝色阴影色；添加新颜色buttonBackground 值为 #BBDEFB  
+```html  
+<color name="screenBackground">#2196F3</color>
+<color name="buttonBackground">#BBDEFB</color>
+```
+#### 设置组件的外观 
+1. 属性面板中设置屏幕背景色为  
+```Kotlin
+android:background="@color/screenBackground"
+```
+2. 设置每个按钮的背景色为buttonBackground    
+```Kotlin
+android:background="@color/buttonBackground"
+```
+3. 移除TextView的背景颜色，设置TextView的文本颜色为color/white，并增大字体大小至72sp  
+4. 效果:  
+![](/实验二/pic/屏幕截图%202023-04-27%20013453.png)  
+#### 设置组件的位置
 
 
 
