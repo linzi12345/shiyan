@@ -106,6 +106,159 @@ android:background="@color/buttonBackground"
 4. 效果:  
 ![](/实验二/pic/屏幕截图%202023-04-27%20013453.png)  
 #### 设置组件的位置
+1. Toast与屏幕的左边距设置为24dp，Random与屏幕的右边距设置为24dp，利用属性面板的Constraint Widget完成设置。 
+![](/实验二/pic/屏幕截图%202023-04-29%20224704.png)
+2. 设置TextView的垂直偏移为0.3
+```java
+app:layout_constraintVertical_bias="0.3"
+```
+3. 效果:  
+![](/实验二/pic/屏幕截图%202023-04-29%20224349.png)
+### 6、添加代码完成应用程序交互
+#### 设置代码自动补全
+Android Studio中，依次点击File>New Projects Settings>Settings for New Projects…，查找Auto Import选项，在Java和Kotlin部分，勾选Add Unambiguous Imports on the fly。
+![](/实验二/pic/屏幕截图%202023-04-29%20233926.png)
+#### 按钮添加一个toast消息
+Toast 是Android 系统提供的一种非常好的提醒方式，在程序中可以使用它将一些短小的信息通知给用户，这些信息会在一段时间后自动消失，并且不会占用任何屏幕空间。在onCreate()方法中添加如下代码：  
+``` kotlin
+ // find the toast_button by its ID and set a click listener
+findViewById<Button>(R.id.toast_button).setOnClickListener {
+    // create a Toast with some text, to appear for a short time
+    val myToast = Toast.makeText(this, "Hello Toast!", Toast.LENGTH_LONG)
+    // show the Toast
+    myToast.show()
+}  
+```
+效果如下：  
+![](/实验二/pic/屏幕截图%202023-04-30%20181137.png)
+#### 使Count按钮更新屏幕的数字
+此步骤向Count按钮添加事件响应，更新Textview的文本显示。  
+```kotlin
+findViewById<Button>(R.id.count_button).setOnClickListener {
+        countMe()
+}
+```
+countMe()为自定义方法，每次点击增加数字1，具体代码为：  
+```kotlin
+  private fun countMe() {
+    // Get the text view
+    val showCountTextView = findViewById<TextView>(R.id.textview)
+
+    // Get the value of the text view.
+    val countString = showCountTextView.text.toString()
+
+    // Convert value to a number and increment it
+    var count = countString.toInt()
+    count++
+
+    // Display the new value in the text view.
+    showCountTextView.text = count.toString()
+}
+```
+效果如下：  
+![](/实验二/pic/屏幕截图%202023-04-30%20212313.png)
+### 7、完成第二界面的代码
+#### 向界面添加TextView显示随机数
+1. 打开fragment_second.xml的设计视图中，当前界面有两个组件，一个Button和一个TextView（textview_second）。
+2. 去掉TextView和Button之间的约束
+3. 拖动新的TextView至屏幕的中间位置，用来显示随机数
+4. 设置新的TextView的id为**@+id/textview_random**
+5. 设置新的TextView的左右约束至屏幕的左右侧，Top约束至textview_second的Bottom，Bottom约束至Button的Top
+6. 设置TextView的字体颜色textColor属性为**@android:color/white**，textSize为72sp，textStyle为bold
+7. 设置TextView的显示文字为“R”
+8. 设置垂直偏移量layout_constraintVertical_bias为0.45
+新增TextView最终的属性代码：
+```html
+<TextView
+   android:id="@+id/textview_random"
+   android:layout_width="wrap_content"
+   android:layout_height="wrap_content"
+   android:text="R"
+   android:textColor="@android:color/white"
+   android:textSize="72sp"
+   android:textStyle="bold"
+   app:layout_constraintBottom_toTopOf="@+id/button_second"
+   app:layout_constraintEnd_toEndOf="parent"
+   app:layout_constraintStart_toStartOf="parent"
+   app:layout_constraintTop_toBottomOf="@+id/textview_second"
+   app:layout_constraintVertical_bias="0.45" />
+```
+#### 更新显示界面文本的TextView
+1. 更改该文本框id为textview_header
+2. 设置layout_width为match_parent，layout_height为wrap_content。
+3. 设置top，left和right的margin为24dp，左边距和右边距也就是start和end边距。
+4. 若还存在与Button的约束，则删除。
+5. 向colors.xml添加颜色colorPrimaryDark，并将TextView颜色设置为@color/colorPrimaryDark，字体大小为24sp。
+6. strings.xml文件中，修改hello_second_fragment的值为"Here is a random number between 0 and %d."
+
+7. 使用Refactor>Rename将hello_second_fragment 重构为random_heading
+新增TextView最终的属性代码：
+```html
+<TextView
+   android:id="@+id/textview_header"
+   android:layout_width="0dp"
+   android:layout_height="wrap_content"
+   android:layout_marginStart="24dp"
+   android:layout_marginLeft="24dp"
+   android:layout_marginTop="24dp"
+   android:layout_marginEnd="24dp"
+   android:layout_marginRight="24dp"
+   android:text="@string/random_heading"
+   android:textColor="@color/colorPrimaryDark"
+   android:textSize="24sp"
+   app:layout_constraintEnd_toEndOf="parent"
+   app:layout_constraintStart_toStartOf="parent"
+   app:layout_constraintTop_toTopOf="parent" />
+```
+#### 更改界面的背景色和按钮布局
+1. 向colors.xml文件添加第二个Fragment背景色的值，修改fragment_second.xml背景色的属性为screenBackground2
+```html
+<color name="screenBackground2">#26C6DA</color>
+```
+2. 将按钮移动至界面的底部，完成所有布局之后，如下图所示：
+![](/实验二/pic/屏幕截图%202023-05-03%20023407.png)
+#### 检查导航图
+检查导航图:
+![](/实验二/pic/屏幕截图%202023-05-03%20230810.png)
+#### 启用SafeArgs
+SafeArgs 是一个 gradle 插件，它可以帮助您在导航图中输入需要传递的数据信息，作用类似于Activity之间传递数据的Bundle。
+1. 首先打开 Gradle Scripts > build.gradle(Project: My First App)
+2. 找到buildscript脚本中的dependencies章节，添加如下代码
+```kotlin
+def nav_version = "2.3.0-alpha02"
+classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$nav_version"
+```
+3. 接着打开 Gradle Scripts > build.gradle (Module: app)
+4. apply plugin开头的代码下添加一行
+```kotlin
+apply plugin: 'androidx.navigation.safeargs.kotlin'
+```
+#### 创建导航动作的参数
+1. 打开导航视图，点击FirstFragment，查看其属性。
+2. 在Actions栏中可以看到导航至SecondFragment
+3. 同理，查看SecondFragment的属性栏
+4. 点击Arguments **+**符号
+5. 弹出的对话框中，添加参数myArg，类型为整型Integer
+####  FirstFragment添加代码，向SecondFragment发数据
+初始应用中，点击FirstFragment的Next/Random按钮将跳转到第二个页面，但没有传递数据。在本步骤中将获取当前TextView中显示的数字并传输至SecondFragment。
+1. 打开FirstFragment.kt源代码文件
+2. 找到onViewCreated()方法，该方法在onCreateView方法之后被调用，可以实现组件的初始化。找到Random按钮的响应代码，注释掉原先的事件处理代码  
+```kotlin
+val showCountTextView = view.findViewById<TextView>(R.id.textview_first)
+val currentCount = showCountTextView.text.toString().toInt()
+```
+4. 将currentCount传递给actionFirstFragmentToSecondFragment ()  
+```kotlin
+val action = FirstFragmentDirections.actionFirstFragmentToSecondFragment(currentCount)
+```
+5. 添加导航事件代码
+   
+
+
+
+
+
+
 
 
 
