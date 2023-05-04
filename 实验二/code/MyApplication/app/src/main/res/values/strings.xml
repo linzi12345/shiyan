@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="hello_kotlin">Hello Kotlin!</string>
+    <string name="toast_button_text">Toast</string>
+    <string name="random">Random</string>
+    <string name="button">Button</string>
+    <string name="count">count_button_text</string>
+    <string name="count_button_text">count</string>
+    <string name="random_button_text">random</string>
+    <string name="_0">0</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="textview">TextView</string>
+    <string name="title_activity_fragment_second">fragment_second</string>
+    <string name="title_activity_main2">MainActivity2</string>
+    <string name="r">R</string>
+    <string name="button1">Button</string>
+    <string name="random_heading" >Here is a random number between 0 and %d.</string>
+
+</resources>
