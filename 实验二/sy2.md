@@ -252,7 +252,38 @@ val currentCount = showCountTextView.text.toString().toInt()
 val action = FirstFragmentDirections.actionFirstFragmentToSecondFragment(currentCount)
 ```
 5. 添加导航事件代码
-   
+```kotlin
+   findNavController().navigate(action)
+```
+运行代码，点击FirstFragment的Count按钮，然后点击Random按钮，可以看到屏幕中间还未出现随机数显示:![](/实验二/pic/屏幕截图%202023-05-04%20132815.png)
+#### 添加SecondFragment的代码
+1. onViewCreated()代码之前添加一行
+```kotlin
+val args: SecondFragmentArgs by navArgs()
+```
+2. onViewCreated()中获取传递过来的参数列表，提取count数值，并在textview_header中显示
+```kotlin
+val count = args.myArg
+val countText = getString(R.string.random_heading, count)
+view.findViewById<TextView>(R.id.textview_header).text = countText
+```
+3. 根据count值生成随机数
+```kotlin
+val random = java.util.Random()
+var randomNumber = 0
+if (count > 0) {
+   randomNumber = random.nextInt(count + 1)
+}
+```
+4. extview_random中显示count值
+```kotlin
+view.findViewById<TextView>(R.id.textview_random).text = randomNumber.toString()
+```
+### 最终运行结果
+![](/实验二/pic/屏幕截图%202023-05-04%20133807.png)
+
+
+
 
 
 
