@@ -55,9 +55,9 @@ def square(x):
 x = np.random.randint(1, 10)
 y = square(x)
 print('%d squared is %d' % (x, y))
-```
-执行效果：
-![](/实验三/pic/屏幕截图%202023-05-05%20010231.png)
+```  
+执行效果：  
+![](/实验三/pic/屏幕截图%202023-05-05%20010231.png)  
 注意：Restart Kernal将清空保存在内存中的变量。同时，在浏览器中关闭一个正在运行的notebook页面，并未真正关闭终止Kernel的运行，其还是后台执行。要真正关闭，可选择File > Close and Halt，或者Kernel > Shutdown。  
 #### 修改默认目录
 1. 在开始菜单里找到并打开Anaconda Prompt，输入如下命令，然后执行。    
@@ -72,7 +72,7 @@ print('%d squared is %d' % (x, y))
 #### vscode中配置jupyter notebook
 1. 打开vscode，并切换到终端 运行jupyter notebook  
 2. 若提示有插件没装，则选择 yes 安装
-![](/实验三/pic/屏幕截图%202023-05-06%20122026.png)  
+![](/实验三/pic/屏幕截图%202023-05-06%20122026.png)    
 3. 安装完插件后，在弹出的 .ipynb 窗口中输入python代码并运行，查看插件是否安装成功  
 4. 在cell中运行python代码  
 ![](/实验三/pic/屏幕截图%202023-05-06%20122931.png)  
