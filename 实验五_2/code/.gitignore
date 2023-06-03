@@ -1,0 +1,10 @@
+# built application files
+*.zip
+
+# generated files
+rps/
+rps-test-set/
+
+# IDEA
+*.iml
+.idea
